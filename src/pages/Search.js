@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import searchAlbumsAPI from "../services/searchAlbumsAPI";
 import Loading from "../components/Loading";
 import AlbumCard from "../components/AlbumCard";
+import Header from "../components/Header";
 
 function Search() {
 
@@ -20,6 +21,7 @@ function Search() {
 
     return (
         <div>
+            <Header />
             <h1>search</h1>
             { loading && <Loading /> }
             { !loading && (

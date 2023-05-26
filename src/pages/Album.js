@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import getMusics from "../services/musicsAPI";
 import MusicaCard from "../components/MusicCard";
+import Header from "../components/Header";
 
 function Album(props) {
     const [loading, setLoading] = useState(true)
@@ -34,6 +35,7 @@ function Album(props) {
 
     return (
         <div>
+            <Header />
             <div>
                 <img src={albumImage} alt={albumName} />
                 <p>{albumName}</p>
