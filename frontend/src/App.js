@@ -9,7 +9,7 @@ import Favorites from './pages/Favorites';
 function App() {
   return (
     <Switch>
-      <Route exact path='/' component={Login}/>
+      <Route exact path='/login' component={Login}/>
       <Route exact path='/search' component={Search}/>
       <Route exact path='/album/:id'component={Album}/>
       <Route exact path='/favorites' component={Favorites}/>

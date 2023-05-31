@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { requestData } from "../services/requests";
 
 function Login(props) {
     const [user, setUser] = useState('');
@@ -13,6 +14,18 @@ function Login(props) {
             setLogged(true)
         }, 1000)
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const responseData = await requestData('/login')
+                console.log(responseData);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData()
+    }, [])
 
     return (
         <div>
