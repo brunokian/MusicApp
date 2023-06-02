@@ -12,7 +12,15 @@ class LoginService {
     public async findAll() {
         const loginODM = new LoginODM()
         const list = await loginODM.findAll()
+
         return list
+    }
+
+    public async checkLogin(email: string, password: string) {
+        const loginODM = new LoginODM()
+        const result = await loginODM.checkLogin(email, password)
+
+        return result
     }
 }
 

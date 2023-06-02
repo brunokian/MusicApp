@@ -21,6 +21,22 @@ class LoginODM {
     public async findAll(): Promise<Ilogin[]> {
         return this.model.find({})
     }
+
+    public async checkLogin(email: string, password: string): Promise<boolean> {
+        const user = await this.model.findOne()
+        console.log(user);
+        
+        if (user) {
+            console.log(user.password === password);
+            console.log(user.password);
+            console.log(password);
+            
+            
+            return user.password === password
+        } else {
+            return false
+        }
+    }
 }
 
 export default LoginODM

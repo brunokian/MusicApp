@@ -7,4 +7,6 @@ loginRoutes.post('/login', (req, res, next) => new LoginController(req, res, nex
 
 loginRoutes.get('/login', (req, res, next) => new LoginController(req, res, next).findAll())
 
+loginRoutes.post('/checkLogin', (req, res, next) => new LoginController(req, res, next).checkLogin())
+
 export default loginRoutes;

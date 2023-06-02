@@ -26,7 +26,23 @@ class LoginController {
     public async findAll() {
         try {
             const list = await this.service.findAll()
-            return this.res.status(200).json(list)
+            return this.res.status(404).json(list)
+        } catch (err) {
+            this.next(err)
+        }
+    }
+
+    public async checkLogin() {
+        const {email, password} = this.req.body
+        try {
+            const validLogin = await this.service.checkLogin(email, password)
+            // console.log(validLogin);
+            
+            if (validLogin) {
+                return this.res.status(200).json({ message: true })
+            } else {                
+                return this.res.status(200).json({ message: false })
+            }
         } catch (err) {
             this.next(err)
         }
