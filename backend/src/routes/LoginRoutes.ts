@@ -9,4 +9,6 @@ loginRoutes.get('/login', (req, res, next) => new LoginController(req, res, next
 
 loginRoutes.post('/checkLogin', (req, res, next) => new LoginController(req, res, next).checkLogin())
 
+loginRoutes.delete('/login', ((req, res, next) => new LoginController(req, res, next).deleteAll()))
+
 export default loginRoutes;

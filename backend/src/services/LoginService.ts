@@ -22,6 +22,13 @@ class LoginService {
 
         return result
     }
+
+    public async deleteAll() {
+        const loginODM = new LoginODM()
+        const result = await loginODM.deleteAll()
+
+        return result
+    }
 }
 
 export default LoginService

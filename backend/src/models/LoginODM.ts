@@ -23,19 +23,18 @@ class LoginODM {
     }
 
     public async checkLogin(email: string, password: string): Promise<boolean> {
-        const user = await this.model.findOne()
-        console.log(user);
+        const user = await this.model.findOne({ email: email, password: password })
+        console.log('aqui',user);
         
         if (user) {
-            console.log(user.password === password);
-            console.log(user.password);
-            console.log(password);
-            
-            
             return user.password === password
         } else {
             return false
         }
+    }
+
+    public async deleteAll() {
+        return this.model.deleteMany({})
     }
 }
 

@@ -47,6 +47,16 @@ class LoginController {
             this.next(err)
         }
     }
+
+    public async deleteAll() {
+        try {
+            await this.service.deleteAll()
+            this.res.status(200).json({ message: 'documentos deletados com sucesso' })
+        } catch (error) {
+            this.res.status(500).json({error: 'erro ao deletar'})
+        }
+        
+    }
 }
 
 export default LoginController;
