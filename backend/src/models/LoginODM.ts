@@ -14,8 +14,12 @@ class LoginODM {
         this.model = models.Login || model('Login', this.schema)
     }
 
-    public async create(account: Ilogin): Promise<Ilogin> {
-        return this.model.create({ ...account })
+    public async create(account: Ilogin): Promise<Ilogin | boolean> {
+        const verify = await this.model.findOne({ email: account.email })
+        if (verify) {
+            return false
+        }
+        return await this.model.create({ ...account })
     }
 
     public async findAll(): Promise<Ilogin[]> {

@@ -15,14 +15,20 @@ function Album(props) {
     useEffect(() => {
         const fetchData = async () => {
             const id = props.match.params.id
-            const songs = await getMusics(id)
-            // console.log(songs[0].artistName);
-            setArtistName(songs[0].artistName)
-            setAlbumImage(songs[0].artworkUrl100)
-            setAmbumName(songs[0].collectionName)
-            setGenre(songs[0].primaryGenreName)
-            setSongList([...songs])
-            setTracks(songs[0].trackCount)
+            try {
+                const songs = await getMusics(id)
+                // console.log(songs[0].artistName);
+                setArtistName(songs[0].artistName)
+                setAlbumImage(songs[0].artworkUrl100)
+                setAmbumName(songs[0].collectionName)
+                setGenre(songs[0].primaryGenreName)
+                setSongList([...songs])
+                setTracks(songs[0].trackCount)
+            } catch (error) {
+                console.log('deu erro');
+                window.alert('album temporariamente indisponivel, tente mais tarde')
+            }
+            
         }
         fetchData()
     }, [])

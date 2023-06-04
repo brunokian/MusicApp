@@ -17,7 +17,12 @@ class LoginController {
     public async create() {
         try {
             const newAccount = await this.service.create(this.req.body);
-            return this.res.status(201).json(newAccount)
+            if (newAccount) {
+                return this.res.status(201).json(newAccount)
+            } else {
+                return this.res.status(401).json({ message: 'este email já existe' })
+            }
+
         } catch (err) {
             this.next(err)
         }

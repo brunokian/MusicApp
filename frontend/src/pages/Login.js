@@ -16,6 +16,7 @@ function Login(props) {
         const test = await requestData('/login')
         console.log(test);
         if (postLogin.message) {
+            setLoginFail(false)
             setLoading(true)
             setTimeout(() => {
                 setLogged(true)

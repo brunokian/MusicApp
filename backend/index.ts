@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import connectToDatabase from "./src/models/connection";
 import loginRoutes from "./src/routes/LoginRoutes";
 import cors from "cors"
+import favoriteRoutes from "./src/routes/FavoriteRoutes";
 
 
 const app = express()
@@ -28,4 +29,5 @@ connectToDatabase()
   });
 
 app.use(loginRoutes)
+app.use(favoriteRoutes)
 
