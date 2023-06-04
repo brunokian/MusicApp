@@ -1,3 +1,4 @@
+import { IfavoriteRequest } from "../interfaces/Ifavorite";
 import FavoriteODM from "../models/FavoriteODM";
 
 class FavoriteService {
@@ -13,6 +14,14 @@ class FavoriteService {
 
     public async getAll() {
         return await this.model.getAll()
+    }
+
+    public async addSong(obj: IfavoriteRequest) {
+        return await this.model.addSong(obj)
+    }
+
+    public async removeSong(obj: IfavoriteRequest) {
+        return await this.model.removeSong(obj)
     }
 }
 

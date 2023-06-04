@@ -30,6 +30,22 @@ class FavoriteODM {
     public async getAll(): Promise<Ifavorite[]> {
         return this.model.find({})
     }
+
+    public async addSong(obj: IfavoriteRequest): Promise<any> {
+        return this.model.findOneAndUpdate(
+            { email: obj.email },
+            { $addToSet: { favoriteList: obj.songLink } },
+            { new: true }
+        )
+    } 
+
+    public async removeSong(obj: IfavoriteRequest): Promise<any> {
+        return this.model.findOneAndUpdate(
+            { email: obj.email },
+            { $pull: { favoriteList: obj.songLink } },
+            { new: true }
+        )
+    } 
 }
 
 export default FavoriteODM;

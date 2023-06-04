@@ -31,6 +31,24 @@ class FavoriteController {
             return this.next(error)
         }
     }
+
+    public async addSong() {
+        try {
+            const add = await this.service.addSong(this.req.body)
+            return this.res.status(200).json(add)
+        } catch (error) {
+            return this.next(error)
+        }
+    }
+
+    public async removeSong() {
+        try {
+            const remove = await this.service.removeSong(this.req.body)
+            return this.res.status(200).json(remove)
+        } catch (error) {
+            return this.next(error)
+        }
+    }
 }
 
 export default FavoriteController;
