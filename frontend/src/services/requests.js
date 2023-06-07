@@ -17,3 +17,12 @@ export const checkLogin = async (email, password) => {
         })
     return result.data
 }
+
+export const reqCreateAccount = async (email, password, username) => {
+    const result = await api.post('/login', {
+        email: email,
+        password: password,
+        name: username
+    })
+    return result.data
+}

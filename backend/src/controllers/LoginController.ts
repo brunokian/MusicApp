@@ -18,9 +18,9 @@ class LoginController {
         try {
             const newAccount = await this.service.create(this.req.body);
             if (newAccount) {
-                return this.res.status(201).json(newAccount)
+                return this.res.status(201).json({ message: true })
             } else {
-                return this.res.status(401).json({ message: 'este email já existe' })
+                return this.res.status(401).json({ message: false })
             }
 
         } catch (err) {
