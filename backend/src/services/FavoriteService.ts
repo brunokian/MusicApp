@@ -16,12 +16,20 @@ class FavoriteService {
         return await this.model.getAll()
     }
 
+    public async findOne(email: string) {
+        return await this.model.findOne(email)
+    }
+
     public async addSong(obj: IfavoriteRequest) {
         return await this.model.addSong(obj)
     }
 
     public async removeSong(obj: IfavoriteRequest) {
         return await this.model.removeSong(obj)
+    }
+
+    public async deleteAll() {
+        return await this.model.deleteAll()
     }
 }
 

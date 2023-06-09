@@ -10,10 +10,15 @@ function Search() {
     const [albums, setAlbums] = useState([])
 
     const handleClick = async () => {
-        setLoading(true)
-        const queryAlbums = await searchAlbumsAPI(artist)
-        setLoading(false)
-        setAlbums([...queryAlbums])
+        try {
+            setLoading(true)
+            const queryAlbums = await searchAlbumsAPI(artist)
+            setLoading(false)
+            setAlbums([...queryAlbums])
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     return (

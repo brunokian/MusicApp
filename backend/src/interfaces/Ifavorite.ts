@@ -5,7 +5,7 @@ interface Ifavorite {
 
 interface IfavoriteRequest {
     email: string,
-    songLink: string,
+    songInfo: { title: string, url: string },
 }
 
 export { Ifavorite, IfavoriteRequest }

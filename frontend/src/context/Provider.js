@@ -2,12 +2,12 @@ import { useMemo, useState } from "react";
 import Context from "./Context";
 
 function Provider({children}) {
-    const [favoriteList, setFavoriteList] = useState([])
+    const [loginEmail, setLoginEmail] = useState('')
 
     const contextUser = useMemo(() => ({
-        favoriteList,
-        setFavoriteList
-    }), [favoriteList]) // o useMemo tem a finalidade de evitar calculos compitacionais repetidos desnecessarios, recalculando o valor apenas quando ocorre mudanças na dependecia
+        loginEmail,
+        setLoginEmail
+    }), [loginEmail]) // o useMemo tem a finalidade de evitar calculos compitacionais repetidos desnecessarios, recalculando o valor apenas quando ocorre mudanças na dependecia
 
     return (
         <Context.Provider value={ contextUser }>

@@ -44,7 +44,7 @@ class LoginController {
             // console.log(validLogin);
             
             if (validLogin) {
-                return this.res.status(200).json({ message: true })
+                return this.res.status(200).json({ message: validLogin })
             } else {                
                 return this.res.status(200).json({ message: false })
             }

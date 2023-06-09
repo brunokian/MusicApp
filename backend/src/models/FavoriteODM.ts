@@ -10,13 +10,15 @@ class FavoriteODM {
     constructor() {
         this.schema = new Schema<Ifavorite>({
             email: { type: String, required: true },
-            favoriteList: { type: [String], required: true }
+            favoriteList: { type: [{ title: String, url: String}], required: true }
         })
         this.model = models.Favorite || model('Favorite', this.schema)
     }
 
     public async create(email: string): Promise<Ifavorite | boolean> {
         const verify = await this.model.findOne({email: email})
+        console.log(verify);
+        
         if (verify) {
             return false
         } else {
@@ -31,10 +33,15 @@ class FavoriteODM {
         return this.model.find({})
     }
 
+    public async findOne(email: string): Promise<Ifavorite | null>{
+        const favorite = await this.model.findOne({ email }).exec();
+        return favorite
+    }
+
     public async addSong(obj: IfavoriteRequest): Promise<any> {
         return this.model.findOneAndUpdate(
             { email: obj.email },
-            { $addToSet: { favoriteList: obj.songLink } },
+            { $addToSet: { favoriteList: obj.songInfo } },
             { new: true }
         )
     } 
@@ -42,10 +49,14 @@ class FavoriteODM {
     public async removeSong(obj: IfavoriteRequest): Promise<any> {
         return this.model.findOneAndUpdate(
             { email: obj.email },
-            { $pull: { favoriteList: obj.songLink } },
+            { $pull: { favoriteList: obj.songInfo } },
             { new: true }
         )
-    } 
+    }
+
+    public async deleteAll() {
+        return this.model.deleteMany({})
+    }
 }
 
 export default FavoriteODM;

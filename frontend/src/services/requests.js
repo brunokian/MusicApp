@@ -26,3 +26,30 @@ export const reqCreateAccount = async (email, password, username) => {
     })
     return result.data
 }
+
+export const reqCreateFavoriteList = async (email) => {
+    const result = await api.post('/favorites', { email: email })
+
+    return result.data
+}
+
+export const reqAddFavorite = async (email, songLink) => {
+    const result = await api.post ('/favorites/add', {
+        email: email,
+        songLink: songLink
+    })
+}
+
+export const reqDeleteFavorite = async (email, songLink) => {
+    const result = await api.post ('/favorites/remove', {
+        email: email,
+        songLink: songLink
+    })
+}
+
+export const reqFindOne = async (email) => {
+    const result = await api.post ('/favorites/find', {
+        email: email
+    })
+    return result.data.favoriteList
+}

@@ -32,6 +32,15 @@ class FavoriteController {
         }
     }
 
+    public async findOne() {
+        try {
+            const result = await this.service.findOne(this.req.body.email)
+            return this.res.status(200).json(result)
+        } catch (error) {
+            return this.next(error)
+        }
+    }
+
     public async addSong() {
         try {
             const add = await this.service.addSong(this.req.body)
@@ -47,6 +56,15 @@ class FavoriteController {
             return this.res.status(200).json(remove)
         } catch (error) {
             return this.next(error)
+        }
+    }
+
+    public async deleteAll() {
+        try {
+            await this.service.deleteAll()
+            this.res.status(200).json({ message: 'documentos deletados com sucesso' })
+        } catch (error) {
+            this.res.status(500).json({error: 'erro ao deletar'})
         }
     }
 }

@@ -1,14 +1,27 @@
-import { useEffect, useState, useRef, useContext } from "react";
-import Context from "../context/Context";
+import { useEffect, useState, useRef } from "react";
+import { reqAddFavorite, reqDeleteFavorite, reqFindOne } from "../services/requests";
 
 function MusicaCard(props) {
 
     const [favorite, setFavorite] = useState(false)
-    const {favotireList, setFavoriteList} = useContext(Context)
+    const [email, setEmail] = useState('')
+    const [favoriteList, setFavoriteList] = useState([])
 
     const audioRef = useRef(null);
 
     useEffect(() => {
+        const loginInfo = JSON.parse(localStorage.getItem('account'))
+        
+        const fetchData = async () => {
+            const list = await reqFindOne(loginInfo.email)
+            setFavoriteList(list)
+            if (list.includes(props.songInfo.trackName)) {
+                setFavorite(true)
+            }
+        }
+        fetchData()
+        
+        setEmail(loginInfo.email)
         if (audioRef.current) {
             audioRef.current.volume = 0.2; // Definir o volume como 20%
         }
@@ -16,8 +29,10 @@ function MusicaCard(props) {
 
     const handleClickFavorite = () => {
         setFavorite(!favorite)
-        if (favorite) {
-            setFavoriteList(...favotireList, props.songInfo.previewUrl)
+        if (!favorite) {
+            reqAddFavorite(email, props.songInfo.trackName)
+        } else {
+            reqDeleteFavorite(email, props.songInfo.trackName)
         }
     }
 
