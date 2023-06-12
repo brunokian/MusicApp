@@ -15,7 +15,8 @@ function MusicaCard(props) {
         const fetchData = async () => {
             const list = await reqFindOne(loginInfo.email)
             setFavoriteList(list)
-            if (list.includes(props.songInfo.trackName)) {
+            const hasFavorite = list.some((obj) => obj.title === props.songInfo.trackName)
+            if (hasFavorite) {
                 setFavorite(true)
             }
         }

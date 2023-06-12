@@ -50,10 +50,9 @@ export const reqDeleteFavorite = async (email, songInfo) => {
     return result.data
 }
 
-export const reqFindOne = async (email, songLink) => {
+export const reqFindOne = async (email) => {
     const result = await api.post ('/favorites/find', {
         email: email,
-        songLink: songLink
     })
     return result.data.favoriteList
 }

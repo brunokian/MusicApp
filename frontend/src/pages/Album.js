@@ -56,7 +56,7 @@ function Album(props) {
                     <div>
 
                         <MusicaCard 
-                            key={ song.artistId }
+                            key={ song.trackId }
                             songInfo={ song }
 
                         />
