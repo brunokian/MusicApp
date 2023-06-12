@@ -9,7 +9,14 @@ function Favorites() {
         const fetchData = async () => {
             const loginInfo = JSON.parse(localStorage.getItem('account'))
             const list = await reqFindOne(loginInfo.email)
-            setFavoriteList(list)
+            const newObj = list.map((obj) => {
+                return {
+                    ['trackName']: obj.title,
+                    ['previewUrl']: obj.url 
+                }
+            })
+            console.log(newObj);
+            setFavoriteList(newObj)
         }
         fetchData()
     }, [])
@@ -17,7 +24,19 @@ function Favorites() {
     return (
         <div>
             <h1>favorites</h1>
+            {favoriteList.map((song, index) => {
+                return (
+                    <div>
 
+                        <MusicaCard 
+                            key={ song.id }
+                            songInfo={ song }
+
+                        />
+
+                    </div>
+                )
+            })}
         </div>
     )
 }
