@@ -27,12 +27,20 @@ function MusicaCard(props) {
         }
     }, []);
 
-    const handleClickFavorite = () => {
+    const handleClickFavorite = async () => {
         setFavorite(!favorite)
         if (!favorite) {
-            reqAddFavorite(email, props.songInfo.trackName)
+            const a = await reqAddFavorite(email, {
+                title: props.songInfo.trackName,
+                url: props.songInfo.previewUrl
+            })
+            console.log(typeof props.songInfo.previewUrl);
         } else {
-            reqDeleteFavorite(email, props.songInfo.trackName)
+            const b = await reqDeleteFavorite(email, {
+                title: props.songInfo.trackName,
+                url: props.songInfo.previewUrl
+            })
+            console.log(b);
         }
     }
 

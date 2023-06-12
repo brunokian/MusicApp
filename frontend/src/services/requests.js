@@ -33,23 +33,27 @@ export const reqCreateFavoriteList = async (email) => {
     return result.data
 }
 
-export const reqAddFavorite = async (email, songLink) => {
-    const result = await api.post ('/favorites/add', {
-        email: email,
-        songLink: songLink
-    })
-}
+export const reqAddFavorite = async (email, songInfo) => {
+    const result = await api.post('/favorites/add', {
+      email: email,
+      songInfo: songInfo
+    });
+    return result.data
+};
+  
 
-export const reqDeleteFavorite = async (email, songLink) => {
+export const reqDeleteFavorite = async (email, songInfo) => {
     const result = await api.post ('/favorites/remove', {
         email: email,
-        songLink: songLink
+        songInfo: songInfo
     })
+    return result.data
 }
 
-export const reqFindOne = async (email) => {
+export const reqFindOne = async (email, songLink) => {
     const result = await api.post ('/favorites/find', {
-        email: email
+        email: email,
+        songLink: songLink
     })
     return result.data.favoriteList
 }
