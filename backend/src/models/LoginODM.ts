@@ -15,7 +15,7 @@ class LoginODM {
     }
 
     public async create(account: Ilogin): Promise<Ilogin | boolean> {
-        const verify = await this.model.findOne({ email: account.email })
+        const verify = await this.model.exists({ email: account.email })
         if (verify) {
             return false
         }

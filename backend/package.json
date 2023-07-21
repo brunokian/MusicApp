@@ -2,12 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node ./dist/index.js",
     "dev": "tsnd index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "seed": "ts-node-dev src/seeds/AccountSeed.ts"
   },
   "keywords": [],
   "author": "",
